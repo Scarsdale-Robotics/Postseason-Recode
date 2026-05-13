@@ -16,7 +16,7 @@ public class ShooterSubsystem {
         this.pid = new PIDController(kP, kD, kI);
     }
     public double getVelocity() {
-        return hardwareRobot.shooterOne.getCorrectedVelocity();
+        return -hardwareRobot.shooterOne.getCorrectedVelocity();
     }
     public void setVelocity(double velo) {
         double error = velo - getVelocity();
@@ -31,7 +31,6 @@ public class ShooterSubsystem {
     }
     public void setPower(double p) {
         hardwareRobot.shooterOne.set(p);
-        hardwareRobot.shooterTwo.set(p);
     }
     public double clamp(double val) {
         return Math.max(-1, Math.min(1, val));

@@ -31,7 +31,7 @@ public class RobotSystem {
     public RobotSystem(HardwareMap hardwareMap, LinearOpMode opMode) {
         this.hardwareRobot = new HardwareRobot(hardwareMap);
         this.drive = new DriveSubsystem(hardwareRobot.leftFront, hardwareRobot.rightFront, hardwareRobot.leftBack, hardwareRobot.rightBack);
-        this.cv = new CVSubsystem(hardwareRobot.webcam, opMode, 3);
+        //this.cv = new CVSubsystem(hardwareRobot.webcam, opMode, 3);
         this.turret = new TurretSubsystem(hardwareRobot);
         this.shooter = new ShooterSubsystem(hardwareRobot);
         this.intake = new IntakeSubsystem(hardwareRobot);
