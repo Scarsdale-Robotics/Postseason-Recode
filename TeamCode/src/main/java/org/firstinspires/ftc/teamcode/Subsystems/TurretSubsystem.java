@@ -9,17 +9,16 @@ public class TurretSubsystem {
     public HardwareRobot hardwareRobot;
     public static double MAX_TICKS = 1000;
     public PIDController pid;
-    public double kP = 0.0001;
-    public double kD = 0.00005;
-    public double kI = 0.001;
+    public static double kP = 0.0001;
+    public static double kD = 0.00005;
+    public static double kI = 0.001;
     public TurretSubsystem(HardwareRobot hardwareRobot) {
         this.hardwareRobot = hardwareRobot;
         this.pid = new PIDController(kP, kD, kI);
     }
     public double getPhi() {
         double ticks = hardwareRobot.turret.getCurrentPosition() % MAX_TICKS;
-        double phi = ticks / 360.0;
-        return phi;
+        return ticks / 360.0;
     }
     public void setPhi(double phi) {
         double error = getPhi() - phi;
@@ -27,10 +26,10 @@ public class TurretSubsystem {
         double clamped = clamp(power);
         setPower(clamped);
     }
-    public void setPID(double kP, double kD, double kI) {
-        this.kP = kP;
-        this.kD = kD;
-        this.kI = kI;
+    public void setPID(double P, double D, double I) {
+        kP = P;
+        kD = D;
+        kI = I;
     }
     public double clamp(double val) {
         return Math.max(-1, Math.min(1, val));

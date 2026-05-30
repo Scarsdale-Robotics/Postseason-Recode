@@ -11,13 +11,11 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 @Configurable
 @TeleOp(name = "ShooterTest")
-public class ShooterTest extends LinearOpMode {
+public class TurretTest extends LinearOpMode {
     public RobotSystem robot;
     public Follower follower;
-    public Pose startPose = new Pose(56, 8, 90);
-    public static double p = 0.0003;
-    public static double i = 0.001;
-    public static double d = 0.000005;
+    public Pose startPose = new Pose(56, 8, 0);
+    public static double phi = 0;
     @Override
     public void runOpMode() throws InterruptedException {
         this.robot = new RobotSystem(hardwareMap, this);
@@ -36,10 +34,12 @@ public class ShooterTest extends LinearOpMode {
             robot.drive.driveRobotCentricReal(strafe * 0.7, forward * 0.7, turn * 0.7);
             if (gamepad1.right_trigger > 0) robot.transfer.shoot();
             else robot.transfer.normal();
-            robot.shooter.setPID(p, i, d);
-            robot.shooter.setVelocity(1800);
-            telemetry.addData("Shooter TPS", robot.shooter.getVelocity());
-            telemetry.addData("Shooter Error", robot.shooter.pid.getPositionError());
+
+            telemetry.addData("X", follower.getPose().getX());
+            telemetry.addData("Y", follower.getPose().getY());
+            telemetry.addData("Heading", Math.toDegrees(follower.getPose().getHeading()));
+            telemetry.addData("Ticks", robot.hardwareRobot.turret.getCurrentPosition());
+            telemetry.addData("Phi", robot.turret.getPhi());
             telemetry.update();
         }
     }

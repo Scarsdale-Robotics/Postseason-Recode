@@ -68,8 +68,8 @@ public class HardwareRobot {
         leftBack.setInverted(true);
         rightBack.setInverted(true);
         shooterOne.setInverted(false);
-        intake.setInverted(false);
-        transferMotor.setInverted(false);
+        intake.setInverted(true);
+        transferMotor.setInverted(true);
         turret.setInverted(false);
 
         leftFront.motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

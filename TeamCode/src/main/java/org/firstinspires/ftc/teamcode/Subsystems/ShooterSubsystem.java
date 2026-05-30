@@ -1,15 +1,16 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 
 import org.firstinspires.ftc.teamcode.HardwareRobot;
-
+@Configurable
 public class ShooterSubsystem {
     public HardwareRobot hardwareRobot;
-    public double kP = 0.0005;
-    public double kD = 0.00001;
-    public double kI = 0.0001;
+    public double kP = 0.0003;
+    public double kI = 0.001;
+    public double kD = 0.00005;
     public PIDController pid;
     public ShooterSubsystem(HardwareRobot hardwareRobot) {
         this.hardwareRobot = hardwareRobot;
@@ -24,10 +25,10 @@ public class ShooterSubsystem {
         double clamped = clamp(power);
         setPower(clamped);
     }
-    public void setPID(double kP, double kD, double kI) {
-        this.kP = kP;
-        this.kD = kD;
-        this.kI = kI;
+    public void setPID(double P, double D, double I) {
+        kP = P;
+        kD = D;
+        kI = I;
     }
     public void setPower(double p) {
         hardwareRobot.shooterOne.set(p);
